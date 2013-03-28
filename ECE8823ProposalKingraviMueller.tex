@@ -1,0 +1,108 @@
+% !TEX TS-program = pdflatex
+% !TEX encoding = UTF-8 Unicode
+
+% This is a simple template for a LaTeX document using the "article" class.
+% See "book", "report", "letter" for other types of document.
+
+\documentclass[12pt]{article} % use larger type; default would be 10pt
+
+
+%\usepackage[utf8]{inputenc} % set input encoding (not needed with XeLaTeX)
+
+%%% Examples of Article customizations
+% These packages are optional, depending whether you want the features they provide.
+% See the LaTeX Companion or other references for full information.
+
+%%% PAGE DIMENSIONS
+\usepackage[margin=1in]{geometry} % to change the page dimensions
+\geometry{letterpaper} % or letterpaper (US) or a5paper or....
+%\geometry{margins=2in} % for example, change the margins to 2 inches all round
+% \geometry{landscape} % set up the page for landscape
+%   read geometry.pdf for detailed page layout information
+
+\usepackage[pdftex]{graphicx}
+
+%\usepackage{graphicx} % support the \includegraphics command and options
+
+% \usepackage[parfill]{parskip} % Activate to begin paragraphs with an empty line rather than an indent
+
+%%% PACKAGES
+%\usepackage[framed, numbered]{mcode}%matlab code
+%\usepackage{appendix}
+%\usepackage{booktabs} % for much better looking tables
+%\usepackage{array} % for better arrays (eg matrices) in maths
+%\usepackage{paralist} % very flexible & customisable lists (eg. enumerate/itemize, etc.)
+%\usepackage{verbatim} % adds environment for commenting out blocks of text & for better verbatim
+\usepackage{subfigure} % make it possible to include more than one captioned figure/table in a single float
+\usepackage{caption}
+%\usepackage{subcaption}
+%\usepackage{psfrag}
+%\usepackage{wrapfig}
+\usepackage{color} \definecolor{darkblue}{rgb}{.1,.1,.5}
+\usepackage[colorlinks,citecolor=darkblue,linkcolor=darkblue,urlcolor=darkblue, bookmarks=false]{hyperref}
+\renewcommand{\equationautorefname}{Eq.}
+ % \newcommand{\subfigureautorefname}{Fig.}
+  \renewcommand{\figureautorefname}{Fig.}
+  \renewcommand{\sectionautorefname}{Section}
+  \renewcommand{\subsectionautorefname}{Section}
+  \renewcommand{\tableautorefname}{Tab.}
+  
+%\usepackage{theorem,ifthen,algorithm,algorithmic}
+%\usepackage{mathrsfs}
+%\usepackage{fullpage}
+
+%MATH
+\usepackage{amsmath}
+\usepackage{amssymb,amsfonts}
+\newcommand{\bs}{\boldsymbol}
+% These packages are all incorporated in the memoir class to one degree or another...
+
+%%% HEADERS & FOOTERS
+%\usepackage{fancyhdr} % This should be set AFTER setting up the page geometry
+%\pagestyle{fancy} % options: empty , plain , fancy
+%\renewcommand{\headrulewidth}{0pt} % customise the layout...
+%\lhead{}\chead{}\rhead{}
+%\lfoot{}\cfoot{\thepage}\rfoot{}
+
+%%%% SECTION TITLE APPEARANCE
+%\usepackage{sectsty}
+%\allsectionsfont{\sffamily\mdseries\upshape} % (See the fntguide.pdf for font help)
+%% (This matches ConTeXt defaults)
+
+%%% ToC (table of contents) APPEARANCE
+%\usepackage[nottoc,notlof,notlot]{tocbibind} % Put the bibliography in the ToC
+%\usepackage[titles,subfigure]{tocloft} % Alter the style of the Table of Contents
+%\renewcommand{\cftsecfont}{\rmfamily\mdseries\upshape}
+%\renewcommand{\cftsecpagefont}{\rmfamily\mdseries\upshape} % No bold!
+
+%%% END Article customizations
+
+%%% The "real" document content comes below...
+
+\title{ECE8823 Project Proposal}
+\author{Hassan Kingravi \& Martin Mueller}
+\date{April 1, 2013}
+
+\begin{document}
+\maketitle
+
+%==========================================================================
+\section*{Sparse Methods for Image Classification}
+Our project will investigate compressive sensing methods for the classification of images. In particular, our project is inspired by~\cite{wright2009robust} who apply compressive sensing to face recognition. In this method, it is assumed that the face images of one person lie on a linear subspace of the training data of that person. Then, after finding the linear combination of $K$ training samples, which best approximates the test image, a test image is classified as belonging to the class that contributed the most to this linear combination.
+
+Beyond implementing the method from~\cite{wright2009robust} and testing it on a different data base, we would like to extend this classification algorithm to other data than faces. The success of this extension is hard to predict at this moment, since the linear subspace assumption mentioned above seems to be somewhat restrictive and data satisfying this assumption other than faces are not obvious to us right now. But we hope to get more insight while implementing \cite{wright2009robust}.
+
+As a back-up plan we would like to propose the use of curvelet features for image classification. If possible we would still use the ``compressive sensing classifier''. But if the linear subspace assumption is not feasible for our data, we might resort to standard classifiers such as neural nets or support vector machines using curvelet features as input.
+
+
+
+\bibliographystyle{plain}
+\bibliography{./projectbib}
+
+
+
+
+
+\end{document}
+ 
+
