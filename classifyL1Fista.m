@@ -1,12 +1,16 @@
-function predicted_class = classifyL1Fista(A,y, class_selector,...
+function [predicted_class xhatClass x_hat] = classifyL1Fista(A,y, class_selector,...
     STOPPING_TIME, maxTime)
-
+    
 x_hat = SolveFISTA(A,y, 'stoppingCriterion', STOPPING_TIME,...
     'maxtime', maxTime, 'maxiteration', 1e6);
-
-residuals = zeros(1,length(class_selector));
+    
+minRes = Inf;
 for j=1:length(class_selector)
     x_aug = x_hat.*class_selector{j};
-    residuals(j) = norm(y - A*x_aug);
+    res = norm(y - A*x_aug);
+    if minRes>res
+        minRes = res;
+        predicted_class = j;
+        xhatClass = x_aug;
+    end
 end
-[m, predicted_class] = min(residuals);

@@ -20,8 +20,10 @@ hw = h*w;
 
 %Choose downsampleRatio per dimension (1 = no downsampling)
 downsampleRatio = 1;
-fea = [];
-gnd = [];
+fea = []; %stores images as normalized vectors in columns 
+gnd = []; %stores class number for corresponding column in fea
+fileName = []; %stores fileName for the corresponding column in fea
+count = 0;
 
 for dd = 1:39
     dd
@@ -39,8 +41,11 @@ for dd = 1:39
                        img = downsample(img',downsampleRatio);
                        img = downsample(img',downsampleRatio);
                    end
+                   count = count+1;
                    fea = [fea, img(:)/norm(img(:))];
                    gnd = [gnd; dd];
+                   fileName{count} = [dirName files(ff).name];
+                   
                end      
             end
        
@@ -52,5 +57,5 @@ end
 if downsampleRatio ~=1
 save(['extended_yale_B_downsampledBy' num2str(downsampleRatio) '.mat'], 'fea','gnd','h','w','downsampleRatio')
 else
-    save('extended_yale_B.mat', 'fea','gnd','h','w','downsampleRatio')
+    save('extended_yale_B.mat', 'fea','gnd','fileName','h','w','downsampleRatio')
 end

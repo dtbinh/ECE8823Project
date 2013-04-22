@@ -1,13 +1,17 @@
-function predicted_class = classifyL1OMP(A,y, class_selector,K,tol)
+function [predicted_class xhatClass x_hat] = classifyL1OMP(A,y, class_selector,K,tol)
 
 x_hat = omp(A,y,K,tol);
 
-residuals = zeros(1,length(class_selector));
+minRes = Inf;
 for j=1:length(class_selector)
     x_aug = x_hat.*class_selector{j};
-    residuals(j) = norm(y - A*x_aug);
+    res = norm(y - A*x_aug);
+    if minRes>res
+        minRes = res;
+        predicted_class = j;
+        xhatClass = x_aug;
+    end
 end
-[m, predicted_class] = min(residuals);
 
 
 function xhat = omp(Phi,y,K,tolRes)
